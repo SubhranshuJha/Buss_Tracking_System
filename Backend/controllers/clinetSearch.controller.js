@@ -109,6 +109,19 @@ const searchBusByNumber = async (req, res) => {
       nextStop: nextStopData
     };
 
+    if (!trip) {
+  return res.json({
+    success: true,
+    data: {
+      ...bus.toObject(),
+      tripId: null,
+      route: [],
+      nextStop: null,
+      msg: "Bus not currently running"
+    }
+  });
+}
+
     res.json({
       success: true,
       data: response

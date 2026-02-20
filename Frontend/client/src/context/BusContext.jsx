@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 
 export const BusContext = createContext();
 
-// ✅ match backend port
+
 const socket = io("http://localhost:5000");
 
 export const BusProvider = ({ children }) => {
