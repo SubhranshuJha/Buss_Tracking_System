@@ -9,7 +9,7 @@ import busRoute from "./routes/bus.route.js";
 import routeRoute from "./routes/routes.route.js";
 import tripRoute from "./routes/trip.route.js";
 import locationRoute from "./routes/location.route.js";
-import simulationRoute from "./routes/simulation.route.js";
+
 
 
 
@@ -38,7 +38,7 @@ app.use("/api/bus", busRoute);
 app.use("/api/route", routeRoute);
 app.use("/api/trip", tripRoute);
 app.use("/api/location", locationRoute);
-app.use("/api/simulate", simulationRoute);
+
 
 
 
