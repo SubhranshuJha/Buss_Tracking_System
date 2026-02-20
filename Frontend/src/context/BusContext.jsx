@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 
 export const BusContext = createContext();
 
+// ✅ match backend port
 const socket = io("http://localhost:5000");
 
 export const BusProvider = ({ children }) => {
@@ -11,6 +12,7 @@ export const BusProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // ===== SEARCH BUS =====
   const searchBus = async (busNumber) => {
     try {
       setLoading(true);
@@ -25,7 +27,8 @@ export const BusProvider = ({ children }) => {
       console.log("Bus Data:", busData);
       setBus(busData);
 
-      if (busData.tripId) {
+      // join trip room for realtime updates
+      if (busData?.tripId) {
         socket.emit("joinTrip", busData.tripId);
       }
 
@@ -37,10 +40,13 @@ export const BusProvider = ({ children }) => {
     }
   };
 
+  // ===== REALTIME LOCATION LISTENER =====
   useEffect(() => {
     socket.on("busLocationUpdate", (data) => {
       setBus((prev) => {
         if (!prev) return prev;
+
+        // ensure same bus
         if (prev.busId !== data.busId) return prev;
 
         return {
@@ -49,7 +55,8 @@ export const BusProvider = ({ children }) => {
             lat: data.lat,
             lng: data.lng
           },
-          speed: data.speed
+          speed: data.speed,
+          nextStop: data.nextStop || prev.nextStop
         };
       });
     });
