@@ -8,23 +8,23 @@ function LoginPage() {
 
   const inputStyle = `
     w-full px-5 py-4
-    bg-slate-50 border-2 border-slate-200
+    bg-[#181C14] border-2 border-[#697565]
     rounded-2xl outline-none transition-all duration-200
-    placeholder:text-slate-400
-    focus:bg-white focus:border-indigo-500
-    focus:ring-4 focus:ring-indigo-500/10
+    placeholder:text-[#697565]/60 text-[#ECDFCC]
+    focus:border-[#ECDFCC]
+    focus:ring-4 focus:ring-[#ECDFCC]/5
   `;
 
   return (
-    <div className="min-h-auto flex items-center justify-center bg-[#f8fafc] px-6 py-12">
-      <div className="w-full max-w-md bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+    <div className="min-h-screen flex items-center justify-center bg-[#181C14] px-6 py-12">
+      <div className="w-full max-w-md bg-[#3C3D37] p-10 rounded-3xl shadow-2xl border border-[#697565]">
 
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">
-            Welcome
+          <h1 className="text-3xl font-black text-[#ECDFCC] tracking-tight">
+            Welcome Back
           </h1>
-          <p className="text-slate-500 font-medium mt-2">
+          <p className="text-[#697565] font-medium mt-2">
             Login to Bus Monitoring Dashboard
           </p>
         </div>
@@ -32,7 +32,7 @@ function LoginPage() {
         {/* Form */}
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1 uppercase tracking-wider">
+            <label className="block text-xs font-bold text-[#697565] mb-2 ml-1 uppercase tracking-[0.2em]">
               Full Name
             </label>
             <input
@@ -45,14 +45,14 @@ function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1 uppercase tracking-wider">
+            <label className="block text-xs font-bold text-[#697565] mb-2 ml-1 uppercase tracking-[0.2em]">
               Password
             </label>
 
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
+                placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className={inputStyle}
@@ -61,9 +61,9 @@ function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-500 hover:text-indigo-600"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#697565] hover:text-[#ECDFCC] transition-colors"
               >
-                {showPassword ? "Hide" : "Show"}
+                {showPassword ? "HIDE" : "SHOW"}
               </button>
             </div>
           </div>
@@ -72,22 +72,23 @@ function LoginPage() {
         {/* Button */}
         <button
           className="
-            w-full mt-8 py-4
-            bg-indigo-600 hover:bg-indigo-700
-            text-white font-bold text-lg
+            w-full mt-10 py-4
+            bg-[#ECDFCC] hover:bg-[#697565]
+            text-[#181C14] hover:text-[#ECDFCC]
+            font-bold text-lg uppercase tracking-widest
             rounded-2xl transition-all active:scale-[0.98]
-            shadow-md
+            shadow-lg
           "
         >
           Sign In
         </button>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-slate-500">
+        <div className="mt-8 text-center border-t border-[#697565]/30 pt-6">
+          <p className="text-sm text-[#697565]">
             Don’t have an account?{" "}
             <Link
               to="/register"
-              className="font-semibold text-indigo-600 hover:underline"
+              className="font-bold text-[#ECDFCC] hover:underline underline-offset-4"
             >
               Register here
             </Link>
@@ -95,10 +96,10 @@ function LoginPage() {
         </div>
 
         {/* Footer */}
-        <div className="mt-8 text-center">
+        <div className="mt-6 text-center">
           <Link
             to="/"
-            className="text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+            className="text-xs font-bold text-[#697565] hover:text-[#ECDFCC] transition-colors uppercase tracking-widest"
           >
             ← Back to Home
           </Link>
