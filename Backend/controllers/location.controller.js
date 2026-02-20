@@ -19,7 +19,12 @@ function calcETA(current, stop, speedKmph = 30) {
   const distanceKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const speedKmPerMin = speedKmph / 60;
 
-  return Math.round(distanceKm / speedKmPerMin);
+  const etaMin = Math.round(distanceKm / speedKmPerMin);
+
+  return {
+    eta: etaMin,
+    distance: Number(distanceKm.toFixed(2))
+  };
 }
 
 // ===== Find nearest upcoming stop =====
@@ -97,13 +102,16 @@ export const updateLocation = async (req, res) => {
       const stop = stops[newIndex];
 
       const result = calcETA({ lat, lng }, stop, speed || bus.speed || 30);
-
+      console.log( result);
+      
       nextStop = {
         name: stop.name,
         index: newIndex,
         eta: result ? `${result.eta} mins` : null,
         distance: result ? `${result.distance} km` : null,
       };
+      console.log(nextStop);
+      
     }
 
     // ===== SOCKET =====
