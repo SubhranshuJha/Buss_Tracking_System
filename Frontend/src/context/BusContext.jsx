@@ -26,6 +26,7 @@ export const BusProvider = ({ children }) => {
       console.log(busData );
       
 
+      console.log("Bus Data:", busData);
       setBus(busData);
 
       // join trip room for realtime updates
