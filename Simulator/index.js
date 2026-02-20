@@ -2,7 +2,7 @@ import axios from "axios";
 
 // ================= CONFIG =================
 const BACKEND_URL = "http://localhost:5000/api/location/update";
-const TRIP_ID = "699808b1b18f63a2dafe1241";
+const TRIP_ID = "69982e1bddff165d90b301a7";
 
 const intervalMs = 1000;       // 1 sec updates
 const stepsBetweenPoints = 20; // smoothness
