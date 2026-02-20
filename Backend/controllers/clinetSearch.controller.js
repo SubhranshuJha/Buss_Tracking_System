@@ -1,5 +1,5 @@
-import Bus from "../models/Bus.model.js";
-import Trip from "../models/Trip.model.js";
+import busModel from "../models/Bus.model.js";
+import tripModel from "../models/Trip.model.js";
 
 // ETA calculator
 function calcETA(current, stop, speedKmph = 30) {
@@ -44,14 +44,13 @@ function getNextStopIndex(current, stops, startIndex = 0) {
   }
   return nextIndex;
 }
-
 const searchBusByNumber = async (req, res) => {
   try {
     const input = req.params.busNumber
       .toUpperCase()
       .replace(/[\s-]/g, "");
 
-    const bus = await Bus.findOne({ busNumber: input });
+    const bus = await busModel.findOne({ busNumber: input });
 
     if (!bus) {
       return res.status(404).json({
@@ -60,7 +59,7 @@ const searchBusByNumber = async (req, res) => {
       });
     }
 
-    const trip = await Trip.findOne({
+    const trip = await tripModel.findOne({
       busId: bus._id,
       status: "running"
     }).populate("routeId");
@@ -68,15 +67,23 @@ const searchBusByNumber = async (req, res) => {
     let routeStops = trip?.routeId?.stops || [];
     let nextStopData = null;
 
-    if (
-      trip &&
-      bus.currentLocation &&
-      routeStops.length > 0 &&
-      trip.nextStopIndex < routeStops.length
-    ) {
-      const stop = routeStops[trip.nextStopIndex];
+    if (trip && bus.currentLocation && routeStops.length > 0) {
+      // 🔹 recompute nearest upcoming stop
+      const nextIndex = getNextStopIndex(
+        bus.currentLocation,
+        routeStops,
+        trip.nextStopIndex || 0
+      );
 
-      const eta = calcETA(
+      // update trip index silently (keeps backend synced)
+      if (nextIndex !== trip.nextStopIndex) {
+        trip.nextStopIndex = nextIndex;
+        await trip.save();
+      }
+
+      const stop = routeStops[nextIndex];
+
+      const etaResult = calcETA(
         bus.currentLocation,
         stop,
         bus.speed || 30
@@ -84,8 +91,9 @@ const searchBusByNumber = async (req, res) => {
 
       nextStopData = {
         name: stop.name,
-        eta: eta ? `${eta} mins` : null,
-        index: trip.nextStopIndex
+        index: nextIndex,
+        eta: etaResult ? `${etaResult.eta} mins` : null,
+        distance: etaResult ? `${etaResult.distance} km` : null
       };
     }
 
