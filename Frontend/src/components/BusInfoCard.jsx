@@ -5,24 +5,64 @@ import CrewDetails from "./CrewDetails";
 const BusInfoCard = () => {
   const { bus, error } = useContext(BusContext);
 
-  if (error) return <p>{error}</p>;
-  if (!bus) return <p>Search a bus number</p>;
+  if (error)
+    return (
+      <div className="text-center mt-6 text-red-600 font-medium">
+        {error}
+      </div>
+    );
+
+  if (!bus)
+    return (
+      <div className="text-center mt-6 text-gray-500">
+        Search a bus number to see details
+      </div>
+    );
 
   return (
-    <div>
-      <h2>Bus {bus.busNumber}</h2>
+    <div className="max-w-2xl mx-auto mt-8 bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
 
+      {/* Bus Number */}
+      <h2 className="text-2xl font-bold text-blue-600 mb-4">
+        Bus {bus.busNumber}
+      </h2>
+
+      {/* Next Stop Info */}
       {bus.nextStop && (
-        <>
-          <p><b>Next Stop:</b> {bus.nextStop.name}</p>
-          <p><b>ETA:</b> {bus.nextStop.eta}</p>
-        </>
+        <div className="mb-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+          <p className="text-gray-700">
+            <span className="font-semibold">Next Stop:</span> {bus.nextStop.name}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-semibold">ETA:</span> {bus.nextStop.eta}
+          </p>
+        </div>
       )}
 
-      <p><b>Status:</b> {bus.status}</p>
-      <p><b>Speed:</b> {bus.speed || 0} km/h</p>
+      {/* Status + Speed */}
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        
+        <div className="p-4 bg-gray-50 rounded-xl border">
+          <p className="text-sm text-gray-500">Status</p>
+          <p className="font-semibold text-gray-800">
+            {bus.status}
+          </p>
+        </div>
 
-      <CrewDetails />
+        <div className="p-4 bg-gray-50 rounded-xl border">
+          <p className="text-sm text-gray-500">Speed</p>
+          <p className="font-semibold text-gray-800">
+            {bus.speed || 0} km/h
+          </p>
+        </div>
+
+      </div>
+
+      {/* Crew Section */}
+      <div className="border-t pt-4">
+        <CrewDetails />
+      </div>
+
     </div>
   );
 };
