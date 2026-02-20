@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useBuses } from "../../context/BustContext";
+import { useBuses } from "../../context/BusContext";
 
 const SearchBar = () => {
   const [value, setValue] = useState("");

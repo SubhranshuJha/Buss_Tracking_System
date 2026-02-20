@@ -1,4 +1,4 @@
-import { useBuses } from "../../context/BustContext";
+import { useBuses } from "../../context/BusContext";
 
 const BusDetails = () => {
   const { buses, selectedBus } = useBuses();

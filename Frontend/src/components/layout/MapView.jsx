@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useBuses } from "../../context/BustContext"; // Matching your filename with the 't'
+import { useBuses } from "../../context/BusContext"; 
 import { useEffect } from "react";
 
 // Helper component to center map when selectedBus changes
