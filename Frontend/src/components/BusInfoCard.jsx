@@ -29,6 +29,8 @@ const BusInfoCard = () => {
 
       {/* Next Stop Info */}
       {bus.nextStop && (
+        <div>
+
         <div className="mb-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
           <p className="text-gray-700">
             <span className="font-semibold">Next Stop:</span> {bus.nextStop.name}
@@ -36,6 +38,23 @@ const BusInfoCard = () => {
           <p className="text-gray-700">
             <span className="font-semibold">ETA:</span> {bus.nextStop.eta}
           </p>
+        </div>
+        <div className="mb-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+          <p className="text-gray-700">
+            <span className="font-semibold">Driver:</span> {bus.crew.driverName}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-semibold">Driver No:</span> {bus.crew.driverPhone}
+          </p>
+        </div>
+        <div className="mb-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+          <p className="text-gray-700">
+            <span className="font-semibold">Conductor:</span> {bus.crew.conductorName}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-semibold">Conductor No:</span> {bus.crew.conductorPhone}
+          </p>
+        </div>
         </div>
       )}
 

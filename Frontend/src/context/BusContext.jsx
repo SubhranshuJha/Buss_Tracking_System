@@ -22,6 +22,7 @@ export const BusProvider = ({ children }) => {
 
       const busData = res.data.data;
 
+      console.log("Bus Data:", busData);
       setBus(busData);
 
       if (busData.tripId) {
