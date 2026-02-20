@@ -35,7 +35,7 @@ const getRouteById = async (req, res) => {
 };
 
 
-export const updateRoute = async (req, res) => {
+const updateRoute = async (req, res) => {
   try {
     const route = await routeModel.findById(req.params.id);
     if (!route) {

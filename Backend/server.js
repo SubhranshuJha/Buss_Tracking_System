@@ -3,12 +3,13 @@ import 'dotenv/config';
 import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
-import connectDB from "./config/db";
+import connectDB from "./config/db.js";
 
-import busRoute from "./routes/bus.route.js";
-import routeRoute from "./routes/routes.route.js";
-import tripRoute from "./routes/trip.route.js";
-import locationRoute from "./routes/location.route.js";
+import busRouter from "./routes/bus.route.js";
+import routeRouter from "./routes/routes.route.js";
+import tripRouter from "./routes/trip.route.js";
+import locationRouter from "./routes/location.route.js";
+import adminRouter from "./routes/admin.route.js";
 
 
 
@@ -34,11 +35,11 @@ app.set("io", io);
 connectDB();
 
 // routes
-app.use("/api/bus", busRoute);
-app.use("/api/route", routeRoute);
-app.use("/api/trip", tripRoute);
-app.use("/api/location", locationRoute);
-
+app.use("/api/bus", busRouter);
+app.use("/api/route", routeRouter);
+app.use("/api/trip", tripRouter);
+app.use("/api/location", locationRouter );
+app.use("/api/admin", adminRouter);
 
 
 

@@ -5,7 +5,7 @@ import {
   getTripById,
   endTrip
 } from "../controllers/trip.controller.js";
-import { verifyAdmin } from "../middlewearauth.middlewear.js";
+import { verifyAdmin } from "../middlewear/auth.middlewear.js";
 
 const tripRouter = express.Router();
 

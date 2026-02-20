@@ -6,7 +6,7 @@ import {
   updateRoute,
   deleteRoute
 } from "../controllers/route.controller.js";
-import { verifyAdmin } from "../middlewearauth.middlewear.js";
+import { verifyAdmin } from "../middlewear/auth.middlewear.js";
 
 const routeRouter = express.Router();
 

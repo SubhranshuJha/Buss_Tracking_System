@@ -4,16 +4,26 @@ import tripModel from "../models/Trip.model.js";
 
 export const updateLocation = async (req, res) => {
   try {
-    const { busId, lat, lng, speed } = req.body;
+    const { tripId, lat, lng, speed } = req.body;
 
-    if (!busId || lat === undefined || lng === undefined) {
-      return res.status(400).json({ success:false, msg: "busId, lat, lng required" });
+    if (!tripId || lat === undefined || lng === undefined) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "tripId, lat, lng required" });
     }
+
+    // find trip
+    const trip = await tripModel.findById(tripId).populate("routeId");
+    if (!trip) {
+      return res.status(404).json({ success: false, msg: "Trip not found" });
+    }
+
+    const busId = trip.busId;
 
     // find bus
     const bus = await busModel.findById(busId);
     if (!bus) {
-      return res.status(404).json({ success:false, msg: "Bus not found" });
+      return res.status(404).json({ success: false, msg: "Bus not found" });
     }
 
     // update bus live data
@@ -30,18 +40,11 @@ export const updateLocation = async (req, res) => {
       lng
     });
 
-    // find active trip
-    const trip = await tripModel.findOne({
-      busId,
-      status: "running"
-    }).populate("routeId");
-
-    // TODO: nextStopIndex calculation can go here later
-
     // socket emit
     const io = req.app.get("io");
     if (io) {
       io.emit("busLocationUpdate", {
+        tripId,
         busId,
         lat,
         lng,
@@ -49,9 +52,9 @@ export const updateLocation = async (req, res) => {
       });
     }
 
-    res.json({ success:true, msg: "Location updated" });
+    res.json({ success: true, msg: "Location updated" , data: trip});
 
   } catch (err) {
-    res.status(500).json({ success:false, error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 };

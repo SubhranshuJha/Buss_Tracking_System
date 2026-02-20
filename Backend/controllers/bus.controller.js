@@ -34,7 +34,7 @@ const getBusById = async (req, res) => {
   res.json({ success:true, data: bus });
 };
 
-export const updateBus = async (req, res) => {
+const updateBus = async (req, res) => {
   const { busNumber, status } = req.body;
 
   const bus = await busModel.findById(req.params.id);
