@@ -24,7 +24,7 @@ const SearchBar = () => {
             flex-1
             px-4 py-3
             bg-transparent
-            text-[#ECDFCC]
+            text-[#5c4f3d]
             placeholder-[#697565]
             outline-none
             focus:ring-2
@@ -37,7 +37,7 @@ const SearchBar = () => {
           onClick={handleSearch}
           disabled={loading}
           className="
-            bg-[#2b281a]
+            bg-[#655e3f]
             text-[#ECDFCC]
             px-6
             font-medium
