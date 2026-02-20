@@ -3,7 +3,7 @@ import { useBuses } from "../../context/BusContext";
 
 const SearchBar = () => {
   const [value, setValue] = useState("");
-  const { searchBus } = useBuses();
+  // const { searchBus } = useBuses();
 
   const handleSearch = () => {
     if (!value) return;

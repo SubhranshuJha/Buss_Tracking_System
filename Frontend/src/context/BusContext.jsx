@@ -22,7 +22,6 @@ export const BusProvider = ({ children }) => {
         )
       );
 
-      // update ONLY if this is the selected bus
       setSelectedBus((prev) => {
         if (!prev) return null;
         if (prev._id !== data.busId) return prev;
