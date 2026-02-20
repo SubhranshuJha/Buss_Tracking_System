@@ -23,6 +23,8 @@ export const BusProvider = ({ children }) => {
       );
 
       const busData = res.data.data;
+      console.log(busData );
+      
 
       setBus(busData);
 
