@@ -37,4 +37,5 @@ const tripSchema = new mongoose.Schema({
   delayMinutes: { type: Number, default: 0 }
 });
 
-export default mongoose.model("Trip", tripSchema);
+const tripModel = mongoose.model("Trip", tripSchema);
+export default tripModel;

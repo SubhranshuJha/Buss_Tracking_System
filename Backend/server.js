@@ -10,6 +10,7 @@ import routeRouter from "./routes/routes.route.js";
 import tripRouter from "./routes/trip.route.js";
 import locationRouter from "./routes/location.route.js";
 import adminRouter from "./routes/admin.route.js";
+import clientSearchRouter from "./routes/clientSearch.route.js";
 
 
 
@@ -40,6 +41,7 @@ app.use("/api/route", routeRouter);
 app.use("/api/trip", tripRouter);
 app.use("/api/location", locationRouter );
 app.use("/api/admin", adminRouter);
+app.use("/api/search", clientSearchRouter);
 
 
 
