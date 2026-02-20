@@ -3,7 +3,11 @@ import routePath from "./path.js";
 
 // ================= CONFIG =================
 const BACKEND_URL = "http://localhost:5000/api/location/update";
+<<<<<<< HEAD
 const TRIP_ID = "6998d39534ac3499e689ed80";
+=======
+const TRIP_ID = "69982e1bddff165d90b301a7";
+>>>>>>> f8688d11188c3201bf4d6900cb0ac6f22c9154ca
 
 const intervalMs = 1000;       // 1 sec updates
 const stepsBetweenPoints = 1; // smoothness

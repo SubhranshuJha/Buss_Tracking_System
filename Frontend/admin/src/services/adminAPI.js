@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/admin",
+  baseURL: "http://localhost:5000/api",
 });
 
 // Attach token automatically
@@ -11,7 +11,9 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const addBus = (data) => API.post("/buses", data);
-export const addRoute = (data) => API.post("/routes", data);
-export const addTrip = (data) => API.post("/trips", data);
-export const adminLogin = (data) => API.post("/login", data);
+export const addBus = (data) => API.post("/bus/", data);
+export const addRoute = (data) => API.post("/route", data);
+export const addTrip = (data) => API.post("/trip", data);
+export const adminLogin = (data) => API.post("/admin/login", data);
+export const getBuses = () => API.get("/bus");   // adjust if /bus
+export const getRoutes = () => API.get("/route");

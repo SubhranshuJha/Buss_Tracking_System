@@ -18,9 +18,14 @@ const createRoute = async (req, res) => {
 
     res.status(201).json({ success:true, data: route });
 
-  } catch (err) {
-    res.status(500).json({ success:false, error: err.message });
   }
+  // catch (err) {
+  //   res.status(500).json({ success:false, error: err.message });
+  // }
+  catch (err) {
+  console.log("CREATE ROUTE ERROR:", err); // 👈 add this
+  res.status(500).json({ success:false, error: err.message });
+}
 };
 
 const getAllRoutes = async (req, res) => {

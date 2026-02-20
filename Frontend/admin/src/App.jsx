@@ -5,6 +5,7 @@ import AddBus from "./components/AddBus"
 import AddRoute from "./components/AddRoute"
 import AddTrip from "./components/AddTrip"
 import Home from "./pages/Home"
+import Login from "./components/Login"
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/add-bus" element={<AddBus />} />
       <Route path="/add-route" element={<AddRoute />} />
       <Route path="/add-trip" element={<AddTrip />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
     </>
   )
