@@ -2,7 +2,7 @@ import axios from "axios";
 
 // ==== CONFIG ====
 const BACKEND_URL = "http://localhost:5000/api/location/update";
-const BUS_ID = "buss id aiya avse";
+const TRIP_ID = "699808b1b18f63a2dafe1241";
 
 // sample route path (later fetch from backend if you want)
 const path = [
@@ -18,9 +18,9 @@ const path = [
   { lat: 23.0400, lng: 72.7422 }
 ];
 
-// ==== SIMULATION SETTINGS ====
-const stepsBetweenPoints = 20; // smoothness
-const intervalMs = 1000;       // speed
+
+const stepsBetweenPoints = 20; 
+const intervalMs = 1000;       
 
 let segment = 0;
 let step = 0;
@@ -38,7 +38,7 @@ setInterval(async () => {
 
   try {
     await axios.post(BACKEND_URL, {
-      busId: BUS_ID,
+      tripId: TRIP_ID,
       lat,
       lng,
       speed: 30
