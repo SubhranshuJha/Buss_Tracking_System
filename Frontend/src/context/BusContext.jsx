@@ -1,78 +1,68 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 import { io } from "socket.io-client";
-import { getBuses, getBusByNumber } from "../services/busSevice";
 
-const BusContext = createContext();
-const socket = io("http://localhost:5173");
+export const BusContext = createContext();
+
+const socket = io("http://localhost:5000");
 
 export const BusProvider = ({ children }) => {
-  const [buses, setBuses] = useState([]);
-  const [selectedBus, setSelectedBus] = useState(null);
+  const [bus, setBus] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadBuses();
+  const searchBus = async (busNumber) => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    socket.on("busLocation", (data) => {
-      // update buses list silently
-      setBuses((prev) =>
-        prev.map((b) =>
-          b._id === data.busId
-            ? { ...b, currentLocation: { lat: data.lat, lng: data.lng } }
-            : b
-        )
+      const res = await axios.get(
+        `http://localhost:5000/api/search/number/${busNumber}`
       );
 
-      setSelectedBus((prev) => {
-        if (!prev) return null;
-        if (prev._id !== data.busId) return prev;
+      const busData = res.data.data;
+
+      setBus(busData);
+
+      if (busData.tripId) {
+        socket.emit("joinTrip", busData.tripId);
+      }
+
+    } catch (err) {
+      setError("Bus not found");
+      setBus(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    socket.on("busLocationUpdate", (data) => {
+      setBus((prev) => {
+        if (!prev) return prev;
+        if (prev.busId !== data.busId) return prev;
 
         return {
           ...prev,
-          currentLocation: { lat: data.lat, lng: data.lng }
+          currentLocation: {
+            lat: data.lat,
+            lng: data.lng
+          },
+          speed: data.speed
         };
       });
     });
 
     return () => {
-      socket.off("busLocation");
+      socket.off("busLocationUpdate");
     };
   }, []);
 
-  const loadBuses = async () => {
-    try {
-      const data = await getBuses();
-      setBuses(data);
-    } catch (err) {
-      console.error("Failed to load buses");
-    }
-  };
-
-  const searchBus = async (number) => {
-    try {
-      const bus = await getBusByNumber(number);
-      setSelectedBus(bus);
-    } catch (err) {
-      alert("Bus not found");
-      setSelectedBus(null);
-    }
-  };
-
-  const clearSelectedBus = () => {
-    setSelectedBus(null);
-  };
-
   return (
     <BusContext.Provider
-      value={{
-        buses,
-        selectedBus,
-        searchBus,
-        clearSelectedBus
-      }}
+      value={{ bus, searchBus, loading, error }}
     >
       {children}
     </BusContext.Provider>
   );
 };
-
-export const useBuses = () => useContext(BusContext);
