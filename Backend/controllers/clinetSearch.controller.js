@@ -18,8 +18,32 @@ function calcETA(current, stop, speedKmph = 30) {
   const distanceKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const speedKmPerMin = speedKmph / 60;
 
-  return Math.round(distanceKm / speedKmPerMin);
-};
+  const etaMin = Math.round(distanceKm / speedKmPerMin);
+
+  return {
+    eta: etaMin,
+    distance: Number(distanceKm.toFixed(2))
+  };
+}
+
+function getNextStopIndex(current, stops, startIndex = 0) {
+  if (!current || !stops?.length) return startIndex;
+
+  let minDist = Infinity;
+  let nextIndex = startIndex;
+
+  for (let i = startIndex; i < stops.length; i++) {
+    const dLat = stops[i].lat - current.lat;
+    const dLng = stops[i].lng - current.lng;
+    const dist = dLat * dLat + dLng * dLng;
+
+    if (dist < minDist) {
+      minDist = dist;
+      nextIndex = i;
+    }
+  }
+  return nextIndex;
+}
 
 const searchBusByNumber = async (req, res) => {
   try {

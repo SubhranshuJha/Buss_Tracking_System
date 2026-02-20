@@ -44,8 +44,15 @@ app.use("/api/admin", adminRouter);
 app.use("/api/search", clientSearchRouter);
 
 
+io.on("connection", (socket) => {
+  console.log("Client connected:", socket.id);
 
+  socket.on("joinTrip", (tripId) => {
+    socket.join(tripId);
+    console.log(`Socket ${socket.id} joined trip ${tripId}`);
+  });
+});
 
-const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => console.log("Server running"));
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log("Server running on port", PORT));
 
