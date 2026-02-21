@@ -16,7 +16,7 @@ const logSchema = new mongoose.Schema({
   }
 });
 
-// fast history queries
+
 logSchema.index({ busId: 1, timestamp: -1 });
 
 const locationLogModel = mongoose.model("LocationLog", logSchema);

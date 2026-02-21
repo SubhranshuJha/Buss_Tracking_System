@@ -2,7 +2,7 @@ import busModel from "../models/Bus.model.js";
 import locationLogModel from "../models/LocationLogs.model.js";
 import tripModel from "../models/Trip.model.js";
 
-// ===== ETA (Haversine) =====
+
 function calcETA(current, stop, speedKmph = 30) {
   if (!current || !stop) return null;
 
@@ -27,7 +27,7 @@ function calcETA(current, stop, speedKmph = 30) {
   };
 }
 
-// ===== Find nearest upcoming stop =====
+
 function getNextStopIndex(current, stops, startIndex = 0) {
   if (!current || !stops?.length) return startIndex;
 
@@ -47,8 +47,8 @@ function getNextStopIndex(current, stops, startIndex = 0) {
   return nextIndex;
 }
 
-// ===== MAIN CONTROLLER =====
-export const updateLocation = async (req, res) => {
+
+const updateLocation = async (req, res) => {
   try {
     const { tripId, lat, lng, speed } = req.body;
 
@@ -70,21 +70,20 @@ export const updateLocation = async (req, res) => {
       return res.status(404).json({ success: false, msg: "Bus not found" });
     }
 
-    // ---- update bus ----
     bus.currentLocation = { lat, lng };
     if (speed !== undefined) bus.speed = speed;
     bus.lastUpdated = new Date();
     bus.status = "running";
     await bus.save();
 
-    // ---- history ----
+
     await locationLogModel.create({
       busId,
       lat,
       lng,
     });
 
-    // ===== NEXT STOP =====
+
     let nextStop = null;
 
     if (trip.routeId?.stops?.length) {
@@ -114,7 +113,6 @@ export const updateLocation = async (req, res) => {
       
     }
 
-    // ===== SOCKET =====
     const io = req.app.get("io");
     if (io) {
       io.to(tripId).emit("busLocationUpdate", {
@@ -131,3 +129,5 @@ export const updateLocation = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+
+export { updateLocation };

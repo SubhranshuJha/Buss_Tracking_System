@@ -1,7 +1,7 @@
 import busModel from "../models/Bus.model.js";
 import tripModel from "../models/Trip.model.js";
 
-// ETA calculator
+
 function calcETA(current, stop, speedKmph = 30) {
   if (!current || !stop) return null;
 
@@ -68,14 +68,13 @@ const searchBusByNumber = async (req, res) => {
     let nextStopData = null;
 
     if (trip && bus.currentLocation && routeStops.length > 0) {
-      // 🔹 recompute nearest upcoming stop
+
       const nextIndex = getNextStopIndex(
         bus.currentLocation,
         routeStops,
         trip.nextStopIndex || 0
       );
 
-      // update trip index silently (keeps backend synced)
       if (nextIndex !== trip.nextStopIndex) {
         trip.nextStopIndex = nextIndex;
         await trip.save();

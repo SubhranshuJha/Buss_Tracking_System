@@ -1,21 +1,17 @@
 import axios from "axios";
 import routePath from "./path.js";
 
-// ================= CONFIG =================
 const BACKEND_URL = "http://localhost:5000/api/location/update";
-<<<<<<< HEAD
+
 const TRIP_ID = "6998d39534ac3499e689ed80";
-=======
-const TRIP_ID = "69982e1bddff165d90b301a7";
->>>>>>> f8688d11188c3201bf4d6900cb0ac6f22c9154ca
 
-const intervalMs = 1000;       // 1 sec updates
-const stepsBetweenPoints = 1; // smoothness
+const intervalMs = 1000;      
+const stepsBetweenPoints = 1; 
 
-// ================= ROUTE =================
+
 const path = routePath;
 
-// ================= DISTANCE =================
+
 function haversineDistance(a, b) {
   const R = 6371;
   const dLat = ((b.lat - a.lat) * Math.PI) / 180;
@@ -31,7 +27,6 @@ function haversineDistance(a, b) {
   return 2 * R * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
 }
 
-// ================= SIMULATOR =================
 let segment = 0;
 let step = 0;
 
@@ -41,7 +36,7 @@ setInterval(async () => {
   const start = path[segment];
   const end = path[(segment + 1) % path.length];
 
-  // interpolation
+  
   const lat = start.lat + ((end.lat - start.lat) * step) / stepsBetweenPoints;
   const lng = start.lng + ((end.lng - start.lng) * step) / stepsBetweenPoints;
 
@@ -54,14 +49,12 @@ setInterval(async () => {
 
   const next = { lat: nextLat, lng: nextLng };
 
-  // speed calculation
+
   const distKm = haversineDistance(current, next);
   let speed = distKm * 3600;
 
-  // simulate stops every ~15 segments
   if (segment % 15 === 0) speed *= 0.4;
 
-  // clamp realistic bus speed
   speed = Math.max(10, Math.min(speed, 80));
 
   try {
@@ -69,7 +62,7 @@ setInterval(async () => {
       tripId: TRIP_ID,
       lat,
       lng,
-      speed: Math.round(speed)
+      speed: Math.round(speed)-10
     });
 
     console.log(
