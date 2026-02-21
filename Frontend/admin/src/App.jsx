@@ -7,6 +7,9 @@ import ViewBus from "./components/ViewBus";
 import EditBus from "./components/EditBus";
 import DeleteBus from "./components/DeleteBus";
 import AddRoute from "./components/AddRoute";
+import ViewRoute from "./components/ViewRoute";
+import EditRoute from "./components/EditRoute";
+import DeleteRoute from "./components/DeleteRoute";
 import AddTrip from "./components/AddTrip";
 import Home from "./pages/Home";
 import Login from "./components/Login";
@@ -28,6 +31,9 @@ function App() {
           <Route path="edit-bus" element={<EditBus />} />
           <Route path="delete-bus" element={<DeleteBus />} />
           <Route path="add-route" element={<AddRoute />} />
+          <Route path="view-route" element={<ViewRoute />} />
+          <Route path="edit-route" element={<EditRoute />} />
+          <Route path="delete-route" element={<DeleteRoute />} />
           <Route path="add-trip" element={<AddTrip />} />
 
         </Route>

@@ -16,19 +16,19 @@ function DashboardLayout() {
     {
       title: "Route",
       links: [
-        { name: "Add Route", slug: "/route/add" },
-        { name: "View Route", slug: "/route/view" },
-        { name: "Edit Route", slug: "/route/edit" },
-        { name: "Delete Route", slug: "/route/delete" },
+        { name: "Add Route", slug: "add-route" },
+        { name: "View Route", slug: "view-route" },
+        { name: "Edit Route", slug: "edit-route" },
+        { name: "Delete Route", slug: "delete-route" },
       ],
     },
     {
       title: "Trip",
       links: [
-        { name: "Add Trip", slug: "/trip/add" },
-        { name: "View Trip", slug: "/trip/view" },
-        { name: "Edit Trip", slug: "/trip/edit" },
-        { name: "Delete Trip", slug: "/trip/delete" },
+        { name: "Add Trip", slug: "add-trip" },
+        { name: "View Trip", slug: "view-trip" },
+        { name: "Edit Trip", slug: "edit-trip" },
+        { name: "Delete Trip", slug: "delete-trip" },
       ],
     },
   ];
