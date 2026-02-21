@@ -11,6 +11,9 @@ import ViewRoute from "./components/ViewRoute";
 import EditRoute from "./components/EditRoute";
 import DeleteRoute from "./components/DeleteRoute";
 import AddTrip from "./components/AddTrip";
+import ViewTrip from "./components/ViewTrip";
+import EditTrip from "./components/EditTrip";
+import DeleteTrip from "./components/DeleteTrip";
 import Home from "./pages/Home";
 import Login from "./components/Login";
 
@@ -35,6 +38,9 @@ function App() {
           <Route path="edit-route" element={<EditRoute />} />
           <Route path="delete-route" element={<DeleteRoute />} />
           <Route path="add-trip" element={<AddTrip />} />
+          <Route path="view-trip" element={<ViewTrip />} />
+          <Route path="edit-trip" element={<EditTrip />} />
+          <Route path="delete-trip" element={<DeleteTrip />} />
 
         </Route>
 
