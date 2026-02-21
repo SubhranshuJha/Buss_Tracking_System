@@ -4,45 +4,82 @@ import BusInfoCard from "../components/BusInfoCard";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-auto bg-[#181C14] overflow-hidden">
+    <div className="min-h-screen bg-[#98C1D9]/40 flex flex-col">
 
-      {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 py-5.5">
+      {/* Header */}
+      <header className="sticky top-0 z-30 bg-[#A8CCE0]/20 border-b border-[#7DAEC7] shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          
+          <h1 className="text-xl font-semibold text-gray-800">
+            Track your bus here...
+          </h1>
 
-        {/* Search Bar */}
-        <div className="mb-6 bg-[#3C3D37] border border-[#697565] rounded-xl p-4 shadow-md">
-          <SearchBar />
+          <div className="w-full max-w-md">
+            <SearchBar />
+          </div>
+
         </div>
+      </header>
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Main Content */}
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
           {/* Map Section */}
-          <div className="lg:col-span-2 bg-[#3C3D37] border border-[#697565] rounded-2xl shadow-md overflow-hidden">
+          <div className="lg:col-span-3 bg-[#F8FBFD] rounded-3xl border border-[#7DAEC7] shadow-sm overflow-hidden relative">
 
-            <div className="h-[350px] sm:h-[450px] lg:h-[550px] w-full">
+            <div className="h-[500px] lg:h-[650px]">
               <MapView />
             </div>
 
-          </div>
-
-          {/* Bus Info Section */}
-          <div className="bg-[#3C3D37] border border-[#697565] rounded-2xl shadow-md p-4 flex flex-col">
-
-            <h2 className="text-lg font-semibold text-[#ECDFCC] mb-4 border-b border-[#697565] pb-2">
-              Bus Information
-            </h2>
-
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto pr-2">
-              <BusInfoCard />
+            {/* Floating Controls */}
+            <div className="absolute bottom-6 right-6 flex flex-col gap-3">
+              <button className="w-12 h-12 bg-white border border-[#7DAEC7] rounded-full shadow-sm hover:bg-[#A8CCE0] transition">
+                📍
+              </button>
+              <button className="w-12 h-12 bg-white border border-[#7DAEC7] rounded-full shadow-sm hover:bg-[#A8CCE0] transition">
+                🔄
+              </button>
             </div>
 
           </div>
 
+          {/* Side Panel */}
+          <aside className="bg-[#A8CCE0] rounded-3xl border border-[#7DAEC7] shadow-sm p-6 flex flex-col">
+
+            {/* Routes */}
+            <div className="mb-5">
+              <h2 className="text-sm font-semibold text-gray-700 mb-3">
+                Routes
+              </h2>
+
+              <div className="flex flex-wrap gap-2">
+                <button className="px-3 py-1 bg-[#84B4CE] text-white rounded-full text-sm hover:opacity-90 transition">
+                  Route 12
+                </button>
+                <button className="px-3 py-1 bg-[#98C1D9] text-gray-700 rounded-full text-sm border border-[#7DAEC7]">
+                  Route 18
+                </button>
+              </div>
+            </div>
+
+            {/* Live Summary */}
+            <div className="mb-6 p-4 bg-[#F8FBFD] rounded-xl border border-[#7DAEC7]">
+              <p className="text-sm text-gray-600">Active Buses</p>
+              <p className="text-2xl font-semibold text-gray-800">14</p>
+            </div>
+
+            {/* Bus List */}
+            <div className="flex-1 overflow-y-auto space-y-4">
+              <BusInfoCard />
+            </div>
+
+          </aside>
+
         </div>
 
-      </div>
+      </main>
     </div>
   );
 };

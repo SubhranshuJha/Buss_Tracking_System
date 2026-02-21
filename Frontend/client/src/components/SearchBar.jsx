@@ -13,7 +13,7 @@ const SearchBar = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex w-full max-w-xl rounded-xl overflow-hidden border border-[#697565] bg-[#181C14]">
+      <div className="flex w-full max-w-xl rounded-xl overflow-hidden border border-[#697565] bg-[#f3f5f1]">
 
         <input
           type="text"
@@ -24,7 +24,7 @@ const SearchBar = () => {
             flex-1
             px-4 py-3
             bg-transparent
-            text-[#ECDFCC]
+            text-[#5c4f3d]
             placeholder-[#697565]
             outline-none
             focus:ring-2
@@ -37,7 +37,7 @@ const SearchBar = () => {
           onClick={handleSearch}
           disabled={loading}
           className="
-            bg-[#697565]
+            bg-[#655e3f]
             text-[#ECDFCC]
             px-6
             font-medium
