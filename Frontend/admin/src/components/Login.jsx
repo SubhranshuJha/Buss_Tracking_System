@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { adminLogin } from "../services/adminApi";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    username: "",   // 🔥 changed from email → username
+    username: "",   
     password: "",
   });
 
@@ -20,6 +22,7 @@ function Login() {
       localStorage.setItem("adminToken", res.data.token);
 
       alert("Login successful");
+      navigate('/');
       setForm({ username: "", password: "" });
 
     } catch (err) {
@@ -44,7 +47,7 @@ function Login() {
             </label>
             <input
               type="text"
-              name="username"   // 🔥 important
+              name="username" 
               value={form.username}
               onChange={handleChange}
               placeholder="Enter username"
