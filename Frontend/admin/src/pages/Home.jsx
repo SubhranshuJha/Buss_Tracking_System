@@ -11,26 +11,26 @@ function DashboardLayout() {
         { name: "View Bus", slug: "view-bus" },
         { name: "Edit Bus", slug: "edit-bus" },
         { name: "Delete Bus", slug: "delete-bus" },
-      ],}
-    // },
-    // {
-    //   title: "Route",
-    //   links: [
-    //     { name: "Add Route", slug: "/route/add" },
-    //     { name: "View Route", slug: "/route/view" },
-    //     { name: "Edit Route", slug: "/route/edit" },
-    //     { name: "Delete Route", slug: "/route/delete" },
-    //   ],
-    // },
-    // {
-    //   title: "Trip",
-    //   links: [
-    //     { name: "Add Trip", slug: "/trip/add" },
-    //     { name: "View Trip", slug: "/trip/view" },
-    //     { name: "Edit Trip", slug: "/trip/edit" },
-    //     { name: "Delete Trip", slug: "/trip/delete" },
-    //   ],
-    // },
+      ],
+    },
+    {
+      title: "Route",
+      links: [
+        { name: "Add Route", slug: "/route/add" },
+        { name: "View Route", slug: "/route/view" },
+        { name: "Edit Route", slug: "/route/edit" },
+        { name: "Delete Route", slug: "/route/delete" },
+      ],
+    },
+    {
+      title: "Trip",
+      links: [
+        { name: "Add Trip", slug: "/trip/add" },
+        { name: "View Trip", slug: "/trip/view" },
+        { name: "Edit Trip", slug: "/trip/edit" },
+        { name: "Delete Trip", slug: "/trip/delete" },
+      ],
+    },
   ];
 
   return (
