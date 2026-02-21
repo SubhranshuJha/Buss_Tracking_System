@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    username: "",   
+    username: "",
     password: "",
   });
 
@@ -20,7 +20,7 @@ function Login() {
 
       // Save token if backend sends it
       localStorage.setItem("adminToken", res.data.token);
-
+      localStorage.setItem("isLoggedIn", "true");
       alert("Login successful");
       navigate('/');
       setForm({ username: "", password: "" });
@@ -47,7 +47,7 @@ function Login() {
             </label>
             <input
               type="text"
-              name="username" 
+              name="username"
               value={form.username}
               onChange={handleChange}
               placeholder="Enter username"

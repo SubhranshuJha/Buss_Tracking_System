@@ -19,3 +19,5 @@ export const addTrip = (data) => API.post("/trip", data);
 export const adminLogin = (data) => API.post("/admin/login", data);
 export const getBuses = () => API.get("/bus");   // adjust if /bus
 export const getRoutes = () => API.get("/route");
+export const getActiveTrips = () => API.get("/trip/active"); // adjust if needed
+export const endTrip = (id) => API.put(`/trip/${id}/end`);
