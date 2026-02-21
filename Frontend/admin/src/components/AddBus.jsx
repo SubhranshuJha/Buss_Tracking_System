@@ -3,7 +3,7 @@ import { addBus } from "../services/adminApi";
 
 const AddBus = () => {
   const [form, setForm] = useState({
-    busNumber: "",   // ✅ must match backend
+    busNumber: "",
   });
 
   const handleChange = (e) =>
@@ -25,17 +25,21 @@ const AddBus = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="bg-white shadow-xl rounded-2xl w-full max-w-md p-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <div className="p-6">
+
+      <div className="bg-white shadow-lg rounded-xl max-w-md p-6">
+        
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Add New Bus
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Bus Number
             </label>
+
             <input
               name="busNumber"
               value={form.busNumber}
@@ -48,12 +52,14 @@ const AddBus = () => {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
+            className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
           >
             Add Bus
           </button>
+
         </form>
       </div>
+
     </div>
   );
 };
