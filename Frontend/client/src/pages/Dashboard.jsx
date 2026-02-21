@@ -54,21 +54,9 @@ const Dashboard = () => {
                 Routes
               </h2>
 
-              <div className="flex flex-wrap gap-2">
-                <button className="px-3 py-1 bg-[#84B4CE] text-white rounded-full text-sm hover:opacity-90 transition">
-                  Route 12
-                </button>
-                <button className="px-3 py-1 bg-[#98C1D9] text-gray-700 rounded-full text-sm border border-[#7DAEC7]">
-                  Route 18
-                </button>
-              </div>
+             
             </div>
 
-            {/* Live Summary */}
-            <div className="mb-6 p-4 bg-[#F8FBFD] rounded-xl border border-[#7DAEC7]">
-              <p className="text-sm text-gray-600">Active Buses</p>
-              <p className="text-2xl font-semibold text-gray-800">14</p>
-            </div>
 
             {/* Bus List */}
             <div className="flex-1 overflow-y-auto space-y-4">
